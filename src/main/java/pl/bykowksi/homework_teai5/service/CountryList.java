@@ -28,22 +28,33 @@ public class CountryList {
 
         for (int i = 0; i < names.getNames().size(); i++) {
             String url = "https://restcountries.eu/rest/v2/name/" + names.getNames().get(i);
-            String forObject = restTemplate.getForObject(url, String.class);
-            System.out.println(forObject);
-//            countryList.add(forObject);
+            Country[] forObject = restTemplate.getForObject(url, Country[].class);
+
+
+            for (Country c: forObject) {
+                System.out.println(c);
+                countryList.add(c);
+            }
+
+
         }
 
-//           for (int i = 0; i < ipAddressList.getAddressList().size(); i++) {
-//            String url = "https://api.ip2country.info/ip?" + ipAddressList.getAddressList().get(i);
-//            Geolocation forObject = restTemplate.getForObject(url, Geolocation.class);
-//            forObject.setUrl(ipAddressList.getAddressList().get(i));
-//            geolocationList.add(forObject);
-//        }
-    }
 
+    }
 
     public List<Country> getCountryList() {
         return countryList;
     }
+
+    public void addCountry(Names newName) {
+        String url = "https://restcountries.eu/rest/v2/name/" + newName.getName();
+        Country[] forObject = restTemplate.getForObject(url, Country[].class);
+
+        for (Country c: forObject) {
+            System.out.println(c);
+            countryList.add(c);
+        }
+    }
+
 
 }

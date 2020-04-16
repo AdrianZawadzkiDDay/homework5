@@ -14,6 +14,7 @@
         <th>Name</th>
         <th>Capitol</th>
         <th>Area</th>
+        <th>Population</th>
     </tr>
     </thead>
     <tbody>
@@ -21,11 +22,19 @@
         <td th:text="${country.getName()}  " ></td>
         <td th:text="${country.getCapital()}  " ></td>
         <td th:text="${country.getArea()}  " ></td>
+        <td th:text="${country.getPopulation()}  " ></td>
+
 
         <br>
     </tr>
     </tbody>
 </table>
+<br><br><br>
+<form class="pure-form"  th:action="@{/countries/newInfo}" th:object="${newName}" method="post">
+    <legend>add Country</legend>
+    <p>Country name: <input type="text" th:field="*{name}"></p>
+    <button class="pure-button pure-button-primary">ADD</button></p>
+</form>
 
 
 </body>
